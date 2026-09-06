@@ -1,0 +1,79 @@
+DGIM ALGORITHM
+
+PLATFORM:
+Cloudera VM → Terminal → Python 3
+
+PROCEDURE:
+
+1. Start Cloudera VM.
+2. Open Terminal.
+3. Type:
+   python3 --version
+
+4. Create Python file:
+   nano dgim.py
+
+5. Copy and paste the following code:
+
+--------------------------------------------------
+
+def dgim(stream, window):
+    buckets = []
+
+    for time, bit in enumerate(stream, 1):
+
+        if bit == 1:
+            buckets.append([1, time])
+
+        while True:
+            found = False
+
+            for size in sorted(set(b[0] for b in buckets)):
+                same = [b for b in buckets if b[0] == size]
+
+                if len(same) > 2:
+                    same.sort(key=lambda x: x[1])
+
+                    first = same[0]
+                    second = same[1]
+
+                    buckets.remove(first)
+                    buckets.remove(second)
+
+                    buckets.append([size * 2, second[1]])
+
+                    found = True
+                    break
+
+            if not found:
+                break
+
+        buckets = [b for b in buckets if b[1] > time - window]
+
+    total = 0
+
+    buckets.sort(key=lambda x: x[1], reverse=True)
+
+    for i, bucket in enumerate(buckets):
+        if i == len(buckets) - 1:
+            total += bucket[0] // 2
+        else:
+            total += bucket[0]
+
+    return total
+
+
+stream = [1, 0, 1, 1, 0, 1, 0, 1, 1, 0]
+
+print("Stream:", stream)
+print("Estimated number of 1s:", dgim(stream, 10))
+
+--------------------------------------------------
+
+6. Save: Ctrl + O → Enter
+7. Exit: Ctrl + X
+8. Run:
+
+   python3 dgim.py
+
+9. Observe the output.

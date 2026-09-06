@@ -1,0 +1,140 @@
+DATASET ANALYSIS USING R
+
+PLATFORM:
+RStudio
+
+PROGRAMMING LANGUAGE:
+R
+
+
+PROCEDURE:
+
+1. Open RStudio.
+
+2. Go to:
+   File → New File → R Script
+
+3. Copy and paste the complete R program given below.
+
+4. Save the file as:
+   dataset_analysis.R
+
+5. Select all the code and click:
+   Run
+
+6. The dataset and calculated results will appear in the
+   Console.
+
+7. The graphs will appear in the Plots section.
+
+
+------------------------------------------------------------
+R PROGRAM
+------------------------------------------------------------
+
+# Create Dataset
+
+student <- data.frame(
+  Name = c("Tejas", "Rahul", "Amit", "Priya", "Sneha"),
+  Marks = c(75, 82, 68, 90, 85)
+)
+
+print(student)
+
+
+# MINIMUM
+
+print(min(student$Marks))
+
+
+# MAXIMUM
+
+print(max(student$Marks))
+
+
+# AVERAGE
+
+print(mean(student$Marks))
+
+
+# SUM
+
+print(sum(student$Marks))
+
+
+# COUNT
+
+print(length(student$Marks))
+
+
+# LINE GRAPH
+
+plot(
+  student$Marks,
+  type = "o",
+  main = "Student Marks - Line Graph",
+  xlab = "Student Number",
+  ylab = "Marks"
+)
+
+
+# HISTOGRAM
+
+hist(
+  student$Marks,
+  main = "Marks Histogram",
+  xlab = "Marks"
+)
+
+
+# BAR GRAPH
+
+barplot(
+  student$Marks,
+  names.arg = student$Name,
+  main = "Student Marks - Bar Graph",
+  xlab = "Students",
+  ylab = "Marks"
+)
+
+
+# PIE CHART
+
+pie(
+  student$Marks,
+  labels = student$Name,
+  main = "Student Marks - Pie Chart"
+)
+
+
+------------------------------------------------------------
+EXPECTED CALCULATIONS
+------------------------------------------------------------
+
+Minimum = 68
+Maximum = 90
+Average = 80
+Sum = 400
+Count = 5
+
+
+------------------------------------------------------------
+TO RUN:
+
+Click Run → Run All
+
+OR select the complete program and press:
+
+Ctrl + Enter
+
+
+OUTPUT:
+
+1. Dataset will be displayed in Console.
+2. Minimum, Maximum, Average, Sum and Count will be displayed.
+3. Line Graph will appear in Plots.
+4. Histogram will appear in Plots.
+5. Bar Graph will appear in Plots.
+6. Pie Chart will appear in Plots.
+
+------------------------------------------------------------

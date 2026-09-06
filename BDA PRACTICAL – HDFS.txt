@@ -1,0 +1,36 @@
+BDA PRACTICAL – HDFS
+
+PROCEDURE TO START HDFS TERMINAL ON CLOUDERA:
+
+1. Start the Cloudera VM in VMware/VirtualBox.
+2. Wait for the Cloudera Desktop to load completely.
+3. Open Applications.
+4. Go to System Tools → Terminal.
+5. The Cloudera Terminal will open.
+6. Type the following HDFS commands one by one and press Enter.
+
+HDFS COMMANDS:
+
+1. Display HDFS Help
+   hdfs dfs -help
+
+2. List Root Directory
+   hdfs dfs -ls /
+
+3. Show Disk Space
+   hdfs dfs -df /
+
+4. Show Disk Usage
+   hdfs dfs -du /
+
+5. Show Directory/File Count
+   hdfs dfs -count /
+
+6. Show File System Status
+   hdfs dfs -stat /
+
+7. Show Disk Space in Readable Format
+   hdfs dfs -df -h /
+
+8. List Files with Readable Sizes
+   hdfs dfs -ls -h /

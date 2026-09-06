@@ -1,0 +1,56 @@
+HBASE – DDL AND DML COMMANDS
+
+PROCEDURE:
+
+1. Open Cloudera Terminal.
+2. Start HBase shell:
+
+   hbase shell
+
+--------------------------------
+DDL COMMANDS – 4
+--------------------------------
+
+1. CREATE TABLE
+
+   create 'student', 'info'
+
+
+2. ALTER TABLE
+
+   alter 'student', {NAME => 'details'}
+
+
+3. DESCRIBE TABLE
+
+   describe 'student'
+
+
+4. DROP TABLE
+
+   disable 'student'
+   drop 'student'
+
+
+--------------------------------
+DML COMMANDS – 4
+--------------------------------
+
+1. INSERT DATA
+
+   put 'student', '101', 'info:name', 'Tejas'
+
+
+2. READ DATA
+
+   get 'student', '101'
+
+
+3. SCAN TABLE
+
+   scan 'student'
+
+
+4. DELETE DATA
+
+   delete 'student', '101', 'info:name'

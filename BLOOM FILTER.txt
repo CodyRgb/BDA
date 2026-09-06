@@ -1,0 +1,55 @@
+BLOOM FILTER
+
+PLATFORM:
+Cloudera VM → Terminal → Python 3
+
+PROCEDURE:
+
+1. Start Cloudera VM.
+2. Open Terminal.
+3. Type:
+   python3 --version
+
+4. Create Python file:
+   nano bloom.py
+
+5. Copy and paste the following code:
+
+--------------------------------------------------
+
+class BloomFilter:
+    def __init__(self, size):
+        self.size = size
+        self.bits = [0] * size
+
+    def add(self, item):
+        h1 = sum(ord(c) for c in item) % self.size
+        h2 = sum(ord(c) * 2 for c in item) % self.size
+        self.bits[h1] = 1
+        self.bits[h2] = 1
+
+    def check(self, item):
+        h1 = sum(ord(c) for c in item) % self.size
+        h2 = sum(ord(c) * 2 for c in item) % self.size
+        return self.bits[h1] == 1 and self.bits[h2] == 1
+
+
+bf = BloomFilter(10)
+
+bf.add("apple")
+bf.add("banana")
+bf.add("mango")
+
+print("apple:", bf.check("apple"))
+print("banana:", bf.check("banana"))
+print("orange:", bf.check("orange"))
+
+--------------------------------------------------
+
+6. Save: Ctrl + O → Enter
+7. Exit: Ctrl + X
+8. Run:
+
+   python3 bloom.py
+
+9. Observe the output.

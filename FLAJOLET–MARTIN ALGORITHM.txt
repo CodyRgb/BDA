@@ -1,0 +1,54 @@
+FLAJOLET–MARTIN ALGORITHM
+
+PLATFORM:
+Cloudera VM → Terminal → Python 3
+
+PROCEDURE:
+
+1. Start Cloudera VM.
+2. Open Terminal.
+3. Type:
+   python3 --version
+
+4. Create Python file:
+   nano flajolet.py
+
+5. Copy and paste the following code:
+
+--------------------------------------------------
+
+def trailing_zeros(n):
+    count = 0
+
+    while n > 0 and n % 2 == 0:
+        count += 1
+        n //= 2
+
+    return count
+
+
+data = ["apple", "banana", "mango", "apple", "orange", "banana"]
+
+max_zero = 0
+
+for item in set(data):
+    h = sum(ord(c) for c in item)
+    zeros = trailing_zeros(h)
+
+    if zeros > max_zero:
+        max_zero = zeros
+
+estimate = 2 ** max_zero
+
+print("Data:", data)
+print("Estimated distinct elements:", estimate)
+
+--------------------------------------------------
+
+6. Save: Ctrl + O → Enter
+7. Exit: Ctrl + X
+8. Run:
+
+   python3 flajolet.py
+
+9. Observe the output.

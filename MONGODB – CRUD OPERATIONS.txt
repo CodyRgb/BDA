@@ -1,0 +1,35 @@
+MONGODB – CRUD OPERATIONS
+
+PROCEDURE:
+
+1. Open the Cloudera Terminal.
+2. Start MongoDB shell:
+   mongo
+
+3. Create/Select Database:
+   use BDA
+
+4. CREATE – Insert a document:
+   db.students.insertOne({
+       rollno: 101,
+       name: "Tejas",
+       marks: 85
+   })
+
+5. READ – Display the document:
+   db.students.find()
+
+6. UPDATE – Update marks:
+   db.students.updateOne(
+       {rollno: 101},
+       {$set: {marks: 90}}
+   )
+
+7. READ – Display updated document:
+   db.students.find()
+
+8. DELETE – Delete the document:
+   db.students.deleteOne({rollno: 101})
+
+9. READ – Confirm deletion:
+   db.students.find()
