@@ -1,55 +1,54 @@
-BLOOM FILTER
-
-PLATFORM:
-Cloudera VM → Terminal → Python 3
-
-PROCEDURE:
-
-1. Start Cloudera VM.
-2. Open Terminal.
-3. Type:
-   python3 --version
-
-4. Create Python file:
-   nano bloom.py
-
-5. Copy and paste the following code:
-
---------------------------------------------------
+# Bloom Filter Algorithm
 
 class BloomFilter:
     def __init__(self, size):
         self.size = size
-        self.bits = [0] * size
+        self.bit_array = [0] * size
 
+    # First hash function
+    def hash1(self, item):
+        return hash(item) % self.size
+
+    # Second hash function
+    def hash2(self, item):
+        return (hash(item) * 31 + 7) % self.size
+
+    # Add an item to Bloom Filter
     def add(self, item):
-        h1 = sum(ord(c) for c in item) % self.size
-        h2 = sum(ord(c) * 2 for c in item) % self.size
-        self.bits[h1] = 1
-        self.bits[h2] = 1
+        index1 = self.hash1(item)
+        index2 = self.hash2(item)
 
+        self.bit_array[index1] = 1
+        self.bit_array[index2] = 1
+
+    # Check whether item may exist
     def check(self, item):
-        h1 = sum(ord(c) for c in item) % self.size
-        h2 = sum(ord(c) * 2 for c in item) % self.size
-        return self.bits[h1] == 1 and self.bits[h2] == 1
+        index1 = self.hash1(item)
+        index2 = self.hash2(item)
+
+        if self.bit_array[index1] == 1 and self.bit_array[index2] == 1:
+            return True
+        else:
+            return False
 
 
+# Create Bloom Filter
 bf = BloomFilter(10)
 
-bf.add("apple")
-bf.add("banana")
-bf.add("mango")
+# Insert elements
+items = ["apple", "banana", "mango", "orange"]
 
-print("apple:", bf.check("apple"))
-print("banana:", bf.check("banana"))
-print("orange:", bf.check("orange"))
+for item in items:
+    bf.add(item)
 
---------------------------------------------------
+# Display bit array
+print("Bloom Filter:", bf.bit_array)
 
-6. Save: Ctrl + O → Enter
-7. Exit: Ctrl + X
-8. Run:
+# Test elements
+test_items = ["apple", "banana", "grapes", "orange"]
 
-   python3 bloom.py
-
-9. Observe the output.
+for item in test_items:
+    if bf.check(item):
+        print(item, "may be present")
+    else:
+        print(item, "is definitely not present")
