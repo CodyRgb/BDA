@@ -22,12 +22,13 @@ use bda;
 
 5. CREATE TABLE
 
-create table student(
-id INT,
-name STRING
+CREATE TABLE IF NOT EXISTS student (
+    id INT,
+    name STRING
 )
-row format delimited
-fields terminated by ',';
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
 
 
 6. DESCRIBE TABLE
