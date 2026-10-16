@@ -1,0 +1,76 @@
+PROCEDURE:
+1. Open Google Colab: https://colab.research.google.com/
+2. Create a new notebook.
+3. Install PySpark by running the following code in the first cell.
+!pip install pyspark
+4. Copy and paste the following code into the second cell.
+# DATA VISUALIZATION USING PYSPARK
+
+from pyspark.sql import SparkSession
+import matplotlib.pyplot as plt
+
+# Create Spark Session
+spark = SparkSession.builder \
+    .appName("Data Visualization") \
+    .getOrCreate()
+
+# Create sample dataset
+data = [
+    ("Jan", 120),
+    ("Feb", 150),
+    ("Mar", 180),
+    ("Apr", 140),
+    ("May", 220),
+    ("Jun", 250)
+]
+
+columns = ["Month", "Sales"]
+
+# Create PySpark DataFrame
+df = spark.createDataFrame(data, columns)
+
+# Display the dataset
+df.show()
+
+# Convert PySpark DataFrame to Pandas
+pdf = df.toPandas()
+
+# 1. Bar Chart
+plt.figure(figsize=(7, 4))
+plt.bar(pdf["Month"], pdf["Sales"], color="skyblue")
+plt.title("Monthly Sales - Bar Chart")
+plt.xlabel("Months")
+plt.ylabel("Sales")
+plt.show()
+
+# 2. Line Chart
+plt.figure(figsize=(7, 4))
+plt.plot(pdf["Month"], pdf["Sales"],
+         marker="o", color="blue")
+plt.title("Monthly Sales - Line Chart")
+plt.xlabel("Months")
+plt.ylabel("Sales")
+plt.grid(True)
+plt.show()
+
+# 3. Pie Chart
+plt.figure(figsize=(6, 6))
+plt.pie(pdf["Sales"], labels=pdf["Month"],
+        autopct="%1.1f%%")
+plt.title("Monthly Sales - Pie Chart")
+plt.show()
+
+# 4. Scatter Plot
+plt.figure(figsize=(7, 4))
+plt.scatter(pdf["Month"], pdf["Sales"], color="red")
+plt.title("Monthly Sales - Scatter Plot")
+plt.xlabel("Months")
+plt.ylabel("Sales")
+plt.show()
+
+# Stop Spark Session
+spark.stop()
+
+5.Run the second cell by clicking the Run button.
+6.Observe the dataset displayed in the output.
+7.Observe the four visualizations generated below the code.
