@@ -1,0 +1,64 @@
+PROCEDURE:
+1. Install R and RStudio on your computer.
+2. Open RStudio.
+3. Create a new R script: File → New File → R Script.
+4. Copy and paste the following code.
+
+# DATA VISUALIZATION USING R
+
+# Create sample dataset
+months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun")
+sales <- c(120, 150, 180, 140, 220, 250)
+
+# Display dataset
+data <- data.frame(Month = months, Sales = sales)
+print(data)
+
+# 1. Bar Chart
+barplot(
+  sales,
+  names.arg = months,
+  main = "Monthly Sales - Bar Chart",
+  xlab = "Months",
+  ylab = "Sales",
+  col = "skyblue",
+  border = "black"
+)
+
+# 2. Line Chart
+plot(
+  sales,
+  type = "o",
+  xaxt = "n",
+  main = "Monthly Sales - Line Chart",
+  xlab = "Months",
+  ylab = "Sales",
+  col = "blue",
+  lwd = 2,
+  pch = 16
+)
+
+axis(1, at = 1:6, labels = months)
+
+# 3. Pie Chart
+pie(
+  sales,
+  labels = months,
+  main = "Monthly Sales - Pie Chart",
+  col = rainbow(6)
+)
+
+# 4. Scatter Plot
+plot(
+  1:6,
+  sales,
+  main = "Monthly Sales - Scatter Plot",
+  xlab = "Month Number",
+  ylab = "Sales",
+  col = "red",
+  pch = 19
+)
+
+Save the file as data_visualization.R.
+Run the program by clicking Source in RStudio, or select the code and click Run.
+Observe the output in the Plots panel.
